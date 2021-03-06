@@ -1,10 +1,14 @@
+const params = new URLSearchParams(window.location.search);
+console.log(params.get("id"));
+const id = params.get('id');
+
 let produits = document.querySelector('.row')
 
 let requete = new XMLHttpRequest();
 
 requete.onreadystatechange = () => {
     if(requete.readyState == 4 && requete.status == 200){
-        let response = JSON.parse(requete.responseText)
+        let response = JSON.parse(requete.response)
         console.log(response);
         mobilier(response)
     }
@@ -36,7 +40,7 @@ const mobilier = (furniture) => {
         price.textContent = meubles.price
         lien.setAttribute("class", "btn btn-primary")
         lien.textContent = "Acheter"
-        lien.href = meubles._id
+        lien. setAttribute("href", "produit.html?id=" + meubles._id)
         //location.href = "produits.html?id=" + furniture[i]._id;
         
         produits.appendChild(col)
@@ -48,7 +52,11 @@ const mobilier = (furniture) => {
         cardbody.appendChild(price)
         cardbody.appendChild(lien)
         
-        const prod = new Product(meubles.imageUrl,meubles.name, meubles.description,meubles.price,meubles._id)
-        console.log(prod);
+        //  const prod = new Product(meubles.imageUrl,meubles.name, meubles.description,meubles.price,meubles._id)
+        //  console.log(prod);
+
+        lien.addEventListener('click', function () {
+            location.href = "produit.html?id=" + id;
+        }) 
     })
 }
