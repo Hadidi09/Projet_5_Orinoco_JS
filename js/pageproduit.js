@@ -31,4 +31,6 @@ class Product2 {
        
       }
 
+      addprod = () => {}
+
 }
