@@ -7,8 +7,6 @@ const id = params.get('id')
 let produits = document.querySelector('.row')
 let requete = new XMLHttpRequest()
 
-
-
 const furniture = (woodenFurniture) => {
     let col = document.createElement('div')
     let cardtext = document.createElement('div')
@@ -31,7 +29,6 @@ const furniture = (woodenFurniture) => {
     lien.setAttribute('class', 'btn btn-primary ajout')
     lien.textContent = 'Acheter'
     lien.setAttribute('href', 'produit.html?id=' + id)
-    
 
     produits.appendChild(col)
     col.appendChild(cardtext)
