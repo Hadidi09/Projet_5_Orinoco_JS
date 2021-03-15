@@ -20,21 +20,27 @@ const basket = () => {
         const td3 = document.createElement('td')
         const btnadd = document.createElement('button')
         const btnsupp = document.createElement('button')
+        const btnRemove = document.createElement('button')
         //  btnadd.innerHTML += `type='button' class="btn btn-success"`
         btnadd.type = 'button'
         btnsupp.type = 'button'
+        btnRemove.type = 'button'
         btnadd.className = 'btn btn-success '
-        btnsupp.className = 'btn btn-danger '
+        btnsupp.className = 'btn btn-secondary '
+        btnRemove.className = 'btn btn-danger'
 
         // td3.setAttribute('class', 'text-right')
 
         const iplus = document.createElement('i')
         const imoins = document.createElement('i')
+        const removeProduct = document.createElement('i')
         iplus.setAttribute('class', 'fas fa-plus-square')
         imoins.setAttribute('class', 'fas fa-minus-square')
+        removeProduct.setAttribute('class', 'fas fa-trash-alt')
 
         btnadd.append(iplus)
         btnsupp.append(imoins)
+        btnRemove.append(removeProduct)
 
         // <button type="button" class="btn btn-info">Button</button>
 
@@ -52,6 +58,7 @@ const basket = () => {
 
         tr.appendChild(td4)
         tr.appendChild(td5)
+        td5.appendChild(btnRemove)
         // console.log(tdimg);
         tBody.appendChild(tr)
 
@@ -59,28 +66,64 @@ const basket = () => {
 
         //console.log(clases);
         let addnew = document.querySelectorAll('.btn-success')
-        console.log(addnew)
-
         addnew.forEach((add) => {
+            console.log(add)
             add.addEventListener('click', (e) => {
                 e.preventDefault()
-                e.stopPropagation()
-                let tab = []
-                tab.push(dataLocalstorage)
-                tab.map((tables) => {
+                dataLocalstorage.forEach((list) => {
                     if (
-                        tables.id === dataStore.id &&
-                        tables.choixVarnish === dataStore.choixVarnish
+                        list.id == dataStore.id &&
+                        list.choixVarnish == dataStore.choixVarnish
                     ) {
-                        localStorage.setItem('panier', JSON.stringify(tables))
+                        list.quantité++
+                    } else if (list.quantité === 0) {
+                        list.id.remove()
                     }
-                    console.log(tables)
+                    localStorage.setItem(
+                        'panier',
+                        JSON.stringify(dataLocalstorage)
+                    )
                 })
+            })
+        })
+        let suppnew = document.querySelectorAll('.btn-secondary')
+        suppnew.forEach((supp) => {
+            console.log(supp)
+            supp.addEventListener('click', (e) => {
+                e.preventDefault()
+                dataLocalstorage.forEach((list) => {
+                    if (
+                        list.id == dataStore.id &&
+                        list.choixVarnish == dataStore.choixVarnish
+                    ) {
+                        list.quantité--
+                    }
+                    localStorage.setItem(
+                        'panier',
+                        JSON.stringify(dataLocalstorage)
+                    )
+                })
+            })
+        })
 
-                //console.log(add);
+        let removProd = document.querySelectorAll('.btn-danger')
+        removProd.forEach((remove) => {
+            remove.addEventListener('click', (e) => {
+                e.preventDefault()
 
-                //  localStorage.setItem('panier', JSON.stringify(clases))
-                // console.log(localStorage.setItem('panier', JSON.stringify(dise)));
+                dataLocalstorage.forEach((list) => {
+                    if (
+                        list.id === dataStore.id &&
+                        list.choixVarnish == dataStore.choixVarnish
+                    ) {
+                        let index = list.id
+                        dataLocalstorage.splice(index, 1)
+                    }
+                    localStorage.setItem(
+                        'panier',
+                        JSON.stringify(dataLocalstorage)
+                    )
+                })
             })
         })
     })
@@ -88,41 +131,33 @@ const basket = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     basket()
+
+    let submit = document.querySelector('#submit')
+    submit.addEventListener('click', (e) => {
+        e.preventDefault()
+        envoiDonnees()
+        window.location = 'confirmation.html'
+    })
 })
 
-// const addBasket = (product) =>
-// {
-//   product.forEach(prod =>
-//   {
-//     let site = prod.find(sites => sites.quantité == prod.quantité)
-//     if (site)
-//     {
-//       product.quantité++
-//     }
-//     localStorage.setItem('panier', JSON.stringify(product))
-//   })
+let Contact = {
+    firstName: document.querySelector('#firstname').value,
+    lastName: document.querySelector('#lastName').value,
+    adresse: document.querySelector('#adresse').value,
+    city: document.querySelector('#city').value,
+    email: document.querySelector('#email').value,
+}
 
-//   localStorage.setItem('panier', JSON.stringify(product))
-//   //console.log(quantity);
-// }
+let products = []
+dataLocalstorage.forEach((data) => {
+    if (data) {
+        products.push(data.id)
+    }
+})
 
-// let suc = addBasket()
-
-// console.log(suc);
-
-// const addBasket = () =>
-// {
-//   let panier = JSON.parse(localStorage.getItem('panier'))
-
-//   let trouver = panier.findIndexOf()
-
-//   panier.forEach(addItem =>
-//   {
-//     if (addItem.id === panier.id) {
-
-//           addItem.quantité += 1
-//       }
-//   localStorage.setItem('panier', JSON.stringify(addItem))
-//   })
-
-// }
+const envoiDonnees = () => {
+    let requete = new XMLHttpRequest()
+    requete.open('POST', 'http://localhost:3000/api/furniture/order')
+    requete.setRequestHeader('content-type', 'application/json')
+    requete.send(JSON.stringify(Contact, products))
+}
