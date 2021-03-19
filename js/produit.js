@@ -56,7 +56,7 @@ const furniture = (woodenFurniture) => {
             e.preventDefault()
             //meuble est mon objet qui va me permettre de stocker les données du meuble choisi dans le localstorage
             let meuble = {
-                id: woodenFurniture._id,
+                _id: woodenFurniture._id,
                 imageUrl: woodenFurniture.imageUrl,
                 name: woodenFurniture.name,
                 price: woodenFurniture.price,
@@ -81,10 +81,10 @@ const furniture = (woodenFurniture) => {
                     // Déclaration de la variable choix pour filtrer et pouvoir gérer l'ajout de quantité , des choixVarnish et de nouveau produit
                     let choix = panier.find(
                         (choix) =>
-                            choix.id === meuble.id &&
+                            choix._id === meuble._id &&
                             choix.choixVarnish === meuble.choixVarnish
                     )
-                    if (meubleInStore.id === meuble.id) {
+                    if (meubleInStore._id === meuble._id) {
                         if (choix) {
                             meubleInStore.quantité += 1
                         } else {

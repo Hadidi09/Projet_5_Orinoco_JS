@@ -1,163 +1,171 @@
 // Variables
-const dataLocalstorage = JSON.parse(localStorage.getItem('panier'))
-console.log(dataLocalstorage)
+const furnitureStorage = JSON.parse(localStorage.getItem('panier'))
+console.log(furnitureStorage)
 const tBody = document.querySelector('#local')
-//console.log(tBody);
 
 //Fonction de mise en page du panier
 const basket = () => {
-    dataLocalstorage.forEach((dataStore) => {
-        // console.log(dataStore);
+    furnitureStorage.forEach((furnitureChart) => {
+        // console.log(furnitureChart);
         const tr = document.createElement('tr')
-
-        // const td1 = document.createElement("td");
         const tdimg = document.createElement('img')
 
-        tdimg.src = `${dataStore.imageUrl}`
+        tdimg.src = `${furnitureChart.imageUrl}`
         tdimg.style.width = '100px'
         const td2 = document.createElement('td')
-        td2.textContent = `${dataStore.choixVarnish}`
+        td2.textContent = `${furnitureChart.choixVarnish}`
         const td3 = document.createElement('td')
-        const btnadd = document.createElement('button')
-        const btnsupp = document.createElement('button')
+        const btnAdd = document.createElement('button')
+        const btnMinus = document.createElement('button')
         const btnRemove = document.createElement('button')
-        //  btnadd.innerHTML += `type='button' class="btn btn-success"`
-        btnadd.type = 'button'
-        btnsupp.type = 'button'
+
+        btnAdd.type = 'button'
+        btnMinus.type = 'button'
         btnRemove.type = 'button'
-        btnadd.className = 'btn btn-success '
-        btnsupp.className = 'btn btn-secondary '
+        btnAdd.className = 'btn btn-success '
+        btnMinus.className = 'btn btn-secondary '
         btnRemove.className = 'btn btn-danger'
 
-        // td3.setAttribute('class', 'text-right')
-
-        const iplus = document.createElement('i')
-        const imoins = document.createElement('i')
+        const tag_Font_Plus = document.createElement('i')
+        const tag_Font_Minus = document.createElement('i')
         const removeProduct = document.createElement('i')
-        iplus.setAttribute('class', 'fas fa-plus-square')
-        imoins.setAttribute('class', 'fas fa-minus-square')
+        tag_Font_Plus.setAttribute('class', 'fas fa-plus-square')
+        tag_Font_Minus.setAttribute('class', 'fas fa-minus-square')
         removeProduct.setAttribute('class', 'fas fa-trash-alt')
 
-        btnadd.append(iplus)
-        btnsupp.append(imoins)
+        btnAdd.append(tag_Font_Plus)
+        btnMinus.append(tag_Font_Minus)
         btnRemove.append(removeProduct)
 
-        // <button type="button" class="btn btn-info">Button</button>
-
-        td3.textContent = `${dataStore.price / 100} `
+        td3.textContent = `${furnitureChart.price / 100} `
         const td4 = document.createElement('td')
-        td4.textContent = `${dataStore.quantité}`
+        td4.textContent = `${furnitureChart.quantité}`
         const td5 = document.createElement('td')
-        td5.textContent = `${(dataStore.price / 100) * dataStore.quantité} `
+        td5.textContent = `${
+            (furnitureChart.price / 100) * furnitureChart.quantité
+        } `
 
         tr.appendChild(tdimg)
         tr.appendChild(td2)
         tr.appendChild(td3)
-        td3.appendChild(btnadd)
-        td3.appendChild(btnsupp)
+        td3.appendChild(btnAdd)
+        td3.appendChild(btnMinus)
 
         tr.appendChild(td4)
         tr.appendChild(td5)
         td5.appendChild(btnRemove)
-        // console.log(tdimg);
         tBody.appendChild(tr)
 
-        //let clases = new Product(dataStore.choixVarnish, dataStore.id, dataStore.imageUrl, dataStore.name, dataStore.price, dataStore.quantité)
-
-        //console.log(clases);
-        let addnew = document.querySelectorAll('.btn-success')
-        addnew.forEach((add) => {
-            console.log(add)
+        let addOneQuantity = document.querySelectorAll('.btn-success')
+        addOneQuantity.forEach((add) => {
+            //  console.log(add)
             add.addEventListener('click', (e) => {
                 e.preventDefault()
-                dataLocalstorage.forEach((list) => {
-                    if (
-                        list.id == dataStore.id &&
-                        list.choixVarnish == dataStore.choixVarnish
-                    ) {
-                        list.quantité++
-                    } else if (list.quantité === 0) {
-                        list.id.remove()
-                    }
-                    localStorage.setItem(
-                        'panier',
-                        JSON.stringify(dataLocalstorage)
-                    )
-                })
+                add_OneQty(furnitureChart)
             })
         })
-        let suppnew = document.querySelectorAll('.btn-secondary')
-        suppnew.forEach((supp) => {
-            console.log(supp)
+        let minusOneQuantity = document.querySelectorAll('.btn-secondary')
+        minusOneQuantity.forEach((supp) => {
+            // console.log(supp)
             supp.addEventListener('click', (e) => {
                 e.preventDefault()
-                dataLocalstorage.forEach((list) => {
-                    if (
-                        list.id == dataStore.id &&
-                        list.choixVarnish == dataStore.choixVarnish
-                    ) {
-                        list.quantité--
-                    }
-                    localStorage.setItem(
-                        'panier',
-                        JSON.stringify(dataLocalstorage)
-                    )
-                })
+                minus_OneQty(furnitureChart)
             })
         })
 
         let removProd = document.querySelectorAll('.btn-danger')
         removProd.forEach((remove) => {
-            remove.addEventListener('click', (e) => {
+            remove.addEventListener('click', (e, index) => {
                 e.preventDefault()
+                e.stopImmediatePropagation()
 
-                dataLocalstorage.forEach((list) => {
-                    if (
-                        list.id === dataStore.id &&
-                        list.choixVarnish == dataStore.choixVarnish
-                    ) {
-                        let index = list.id
-                        dataLocalstorage.splice(index, 1)
-                    }
-                    localStorage.setItem(
-                        'panier',
-                        JSON.stringify(dataLocalstorage)
-                    )
-                })
+                removItem(furnitureChart, index)
+
+                window.location = 'panier.html'
+                console.log(furnitureChart)
             })
         })
     })
 }
 
+const add_OneQty = (prods) => {
+    furnitureStorage.forEach((list) => {
+        if (list.id == prods.id && list.choixVarnish == prods.choixVarnish) {
+            list.quantité++
+        }
+        localStorage.setItem('panier', JSON.stringify(furnitureStorage))
+    })
+}
+
+const minus_OneQty = (prods) => {
+    furnitureStorage.forEach((list) => {
+        if (list.id == prods.id && list.choixVarnish == prods.choixVarnish) {
+            list.quantité--
+        }
+        localStorage.setItem('panier', JSON.stringify(furnitureStorage))
+    })
+}
+
+///supprimer un produit
+const removItem = (furnitureChart, index) => {
+    let furnitureStorage = JSON.parse(localStorage.getItem('panier'))
+    let removingFurniture = furnitureStorage.filter(
+        (furnishings) => furnishings._id == furnitureChart
+    )
+    if (removingFurniture >= 0) {
+        furnitureStorage.splice(index, 1)
+    }
+
+    localStorage.setItem('panier', JSON.stringify(furnitureStorage))
+}
+
+const sendingTheData = (furnitureData) => {
+    let requete = new XMLHttpRequest()
+    requete.onreadystatechange = async () => {
+        if (requete.readyState == 4 && requete.status == 201) {
+            let furnits = await JSON.parse(requete.response)
+            console.log(furnits)
+            localStorage.setItem('order', JSON.stringify(furnits.orderId))
+            localStorage.setItem('contact', JSON.stringify(furnits.contact))
+        }
+    }
+
+    requete.open('POST', 'http://localhost:3000/api/furniture/order', true)
+    requete.setRequestHeader('content-type', 'application/json')
+
+    requete.send(furnitureData)
+}
+// Fonction qui permet de récupérer les données saisies sur le formulaire et les ID products des meubles
+const submit_Form_Data = () => {
+    // Mon Objet "contact" pour récuperer les valeurs des inputs
+    let contact = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        address: document.getElementById('adresse').value,
+        city: document.getElementById('city').value,
+        email: document.getElementById('email').value,
+    }
+    // Pousser les id qui se trouve dans le localstorage, dans le tableau "products"
+    let products = []
+    furnitureStorage.forEach((furnishings) => {
+        if (furnishings) {
+            products.push(furnishings._id)
+        }
+    })
+    // Mon Objet "contact_Product_Details" pour envoyer au server les données demandées au format JSON
+    const contact_Product_Details = JSON.stringify({ contact, products })
+
+    sendingTheData(contact_Product_Details)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     basket()
 
-    let submit = document.querySelector('#submit')
-    submit.addEventListener('click', (e) => {
+    const form_Data = document.getElementById('formdata')
+    form_Data.addEventListener('submit', (e) => {
         e.preventDefault()
-        envoiDonnees()
-        window.location = 'confirmation.html'
+        submit_Form_Data()
+
+        window.location.assign('confirmation.html')
     })
 })
-
-let Contact = {
-    firstName: document.querySelector('#firstname').value,
-    lastName: document.querySelector('#lastName').value,
-    adresse: document.querySelector('#adresse').value,
-    city: document.querySelector('#city').value,
-    email: document.querySelector('#email').value,
-}
-
-let products = []
-dataLocalstorage.forEach((data) => {
-    if (data) {
-        products.push(data.id)
-    }
-})
-
-const envoiDonnees = () => {
-    let requete = new XMLHttpRequest()
-    requete.open('POST', 'http://localhost:3000/api/furniture/order')
-    requete.setRequestHeader('content-type', 'application/json')
-    requete.send(JSON.stringify(Contact, products))
-}
