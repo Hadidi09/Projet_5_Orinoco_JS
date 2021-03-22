@@ -6,6 +6,7 @@
 
 #produits {
     background-color: #dece;
+    
 }
 
 #produits h1 {
@@ -42,4 +43,83 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.form-inline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sumtotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#total{
+    border: 2px solid brown;
+    background-color: burlywood;
+    font-size: 24px;
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 3%;
+}
+
+li{
+    color: blue;
+    text-shadow: 
+                3px 3px 0 #18e657;
+              
+             
+                
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+article .order{
+    border: 2px solid;
+    border-radius: 15px;
+    background-color: chartreuse;
+    padding: 1%;
+    border-style: hidden;
+}
+
+article p{
+    /* background-color: antiquewhite;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 1%; */
+    border-radius: 15px;
+background: #269ac2;
+box-shadow:
+  0 12.5px 10px rgba(0, 0, 0, 0.135),
+  0 100px 80px rgba(0, 0, 0, 0.27)
+;
+color: #fff;
+padding: 1%;
+
+font-size: 20px;
+font-weight: bold;
+}
+
+.tosetup{
+    display: flex;
+    align-content: center;
+}
+
+.removeup{
+    display: flex;
+    align-items: center;
+}
+
+.btn-danger{
+    display: flex;
+}
+
+td.tosetup span{
+    margin: 2%;
 }
