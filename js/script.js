@@ -30,7 +30,7 @@ const furniture = (woodenFurniture) => {
         price.textContent = chattel.price
         link.setAttribute('class', 'btn btn-primary')
         link.textContent = 'Acheter'
-        link.setAttribute('href', '../frontend/pagesHTML/produit.html?id=' + chattel._id)
+        link.setAttribute('href', 'produit.html?id=' + chattel._id)
        
 
         productsRow.appendChild(col)
@@ -59,6 +59,6 @@ request.onreadystatechange = async () => {
     }
 }
 
-request.open('GET', 'http://localhost:3000/api/furniture', true)
+request.open('GET', 'https://orinoco-js.herokuapp.com/api/furniture', true)
 request.send()
 
