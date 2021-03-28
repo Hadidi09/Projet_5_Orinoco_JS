@@ -6,7 +6,6 @@ const id = params.get('id')
 //Mes Variables
 let products = document.querySelector('.row')
 let request = new XMLHttpRequest()
-
 let furnitureProducts = []
 
 
@@ -18,10 +17,10 @@ const furniture = (woodenFurniture) => {
     let cardbody = document.createElement('div')
     let h3 = document.createElement('h3')
     let para = document.createElement('p')
-    let price = document.createElement('p')
+    let price = document.createElement('span')
     let link = document.createElement('a')
 
-    col.setAttribute('class', 'col-xs-12 col-sm-6 col-md-4')
+    col.setAttribute('class', 'col-xs-12 col-sm-12 col-md-6')
     cardtext.setAttribute('class', 'card-text-center')
     cardtext.style.width = '18rem'
     image.src = woodenFurniture.imageUrl
@@ -32,7 +31,7 @@ const furniture = (woodenFurniture) => {
     price.textContent = woodenFurniture.price / 100
     link.setAttribute('class', 'btn btn-primary ajout')
     link.textContent = 'Acheter'
-    link.setAttribute('href', 'produit.html?id=' + id)
+    link.setAttribute('href', '../frontend/pagesHTML/produit.html?id=' + id)
 
     products.appendChild(col)
     col.appendChild(cardtext)

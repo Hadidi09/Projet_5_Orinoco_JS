@@ -19,7 +19,7 @@ const furniture = (woodenFurniture) => {
         let price = document.createElement('p')
         let link = document.createElement('a')
 
-        col.setAttribute('class', 'col-xs-12 col-sm-6 col-md-4')
+        col.setAttribute('class', 'col-xs-12 col-sm-12 col-md-6')
         cardtext.setAttribute('class', 'card-text-center')
         cardtext.style.width = '18rem'
         image.src = chattel.imageUrl
@@ -30,7 +30,7 @@ const furniture = (woodenFurniture) => {
         price.textContent = chattel.price
         link.setAttribute('class', 'btn btn-primary')
         link.textContent = 'Acheter'
-        link.setAttribute('href', './produit.html?id=' + chattel._id)
+        link.setAttribute('href', '../frontend/pagesHTML/produit.html?id=' + chattel._id)
        
 
         productsRow.appendChild(col)

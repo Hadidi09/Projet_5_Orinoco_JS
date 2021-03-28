@@ -161,7 +161,7 @@ const submit_Form_Data = () => {
         lastName: document.getElementById('lastName').value,
         address: document.getElementById('adresse').value,
         city: document.getElementById('city').value,
-        email: document.getElementById('email').value,
+        email: document.getElementById('email').value
     }
     // Pousser les id qui se trouve dans le localstorage, dans le tableau "products"
     let products = []
@@ -191,3 +191,5 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
+//let log = submit_Form_Data()
+//console.log(submit_Form_Data());
