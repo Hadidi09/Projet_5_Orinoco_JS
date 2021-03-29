@@ -147,7 +147,7 @@ const sendingTheData = (furnitureData) => {
         }
     }
 
-    requete.open('POST', 'https://orinoco-js.herokuapp.com/api/furniture/order', true)
+    requete.open('POST', 'http://localhost:3000/api/furniture/order', true)
     requete.setRequestHeader('content-type', 'application/json')
 
     requete.send(furnitureData)

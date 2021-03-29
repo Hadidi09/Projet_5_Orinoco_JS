@@ -114,5 +114,5 @@ request.onreadystatechange = async () => {
     }
 }
 
-request.open('GET', 'https://orinoco-js.herokuapp.com/api/furniture/' + id, true)
+request.open('GET', 'http://localhost:3000/api/furniture/' + id, true)
 request.send()
