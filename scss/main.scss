@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import '../scss/mixins.scss';
 
-
 * {
     margin: 0;
     padding: 0;
@@ -18,46 +17,41 @@
     .row {
         justify-content: center;
     }
-    
 }
-
- 
 
 .title {
     text-align: center;
 }
-
-
 
 .card-text-center {
     margin: auto 2rem;
     border: 2px solid;
     border-radius: 15px;
     margin-bottom: 2%;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.14);
-    .card-img-top{
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.14);
+    .card-img-top {
         width: 100%;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
 }
 
-.card-body{
+.card-body {
     display: inline-grid;
     a:hover {
         color: #000;
     }
-    span{
+    span {
         display: flex;
-    justify-content: center;
-    border: 2px solid;
-    max-width: 60px;
-    place-self: center;
-    border-radius: 15px;
-    padding: 2%;
-    margin-bottom: 1%;
+        justify-content: center;
+        border: 2px solid;
+        max-width: 60px;
+        place-self: center;
+        border-radius: 15px;
+        padding: 2%;
+        margin-bottom: 1%;
     }
-    select{
+    select {
         grid-row: 4;
     }
 }
@@ -76,7 +70,7 @@ form {
     flex-direction: column;
 }
 
-.form-inline{
+.form-inline {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,7 +81,7 @@ form {
     justify-content: center;
     align-items: center;
 }
-#total{
+#total {
     border: 2px solid brown;
     background-color: burlywood;
     font-size: 24px;
@@ -96,52 +90,47 @@ form {
     margin-bottom: 3%;
 }
 
-
 article {
     display: flex;
     flex-direction: column;
     align-items: center;
-    .order{
+    .order {
         border: 2px solid;
         border-radius: 15px;
         background-color: chartreuse;
         padding: 1%;
         border-style: hidden;
     }
-    p{
+    p {
         /* background-color: antiquewhite;
         border: 2px solid;
         border-radius: 15px;
         padding: 1%; */
         border-radius: 15px;
-    background: #269ac2;
-    box-shadow:
-      0 12.5px 10px rgba(0, 0, 0, 0.135),
-      0 100px 80px rgba(0, 0, 0, 0.27)
-    ;
-    color: #fff;
-    padding: 1%;
-    
-    font-size: 20px;
-    font-weight: bold;
+        background: #269ac2;
+        box-shadow: 0 12.5px 10px rgba(0, 0, 0, 0.135),
+            0 100px 80px rgba(0, 0, 0, 0.27);
+        color: #fff;
+        padding: 1%;
+
+        font-size: 20px;
+        font-weight: bold;
     }
-    .tosetup{
+    .tosetup {
         display: flex;
         align-content: center;
     }
-    
 }
 
-.removeup{
+.removeup {
     display: flex;
     align-items: center;
 }
 
-.btn-danger{
+.btn-danger {
     display: flex;
 }
 
-td.tosetup span{
+td.tosetup span {
     margin: 2%;
 }
-

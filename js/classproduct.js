@@ -11,6 +11,9 @@ class Product {
     addQuantity() {
         if (this.id === this.id && this.choixVarnish === this.choixVarnish) {
             this.quantité++
+            console.log(this);
         }
     }
 }
+
+
