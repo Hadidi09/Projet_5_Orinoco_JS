@@ -137,10 +137,8 @@ const removItem = (furnitureChart, index) => {
 //Fonction qui me permet d'envoyer la requête Post au serveur avec les données attendues
 const sendingTheData = (furnitureData) => {
     let requete = new XMLHttpRequest()
-    requete.onreadystatechange = async () =>
-    {
-        try
-        {
+    requete.onreadystatechange = async () => {
+        try {
             if (requete.readyState == 4 && requete.status == 201) {
                 let furnits = await JSON.parse(requete.response)
                 console.log(furnits)
@@ -149,12 +147,9 @@ const sendingTheData = (furnitureData) => {
                 localStorage.setItem('total', JSON.stringify(total))
                 window.location.assign('confirmation.html')
             }
+        } catch (err) {
+            console.log('error' + err)
         }
-        catch(err) {
-            console.log('error' + err);
-        }
-        
-       
     }
 
     requete.open('POST', 'http://localhost:3000/api/furniture/order', true)

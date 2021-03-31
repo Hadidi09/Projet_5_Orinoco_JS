@@ -49,24 +49,16 @@ const furniture = (woodenFurniture) => {
 }
 
 // Fonction qui envoie la requête Get au serveur pour récupérer les meubles mis en vente
-request.onreadystatechange = async () =>
-{
-    try
-    {
-         if (request.readyState == 4 && request.status == 200)
-        {
+request.onreadystatechange = async () => {
+    try {
+        if (request.readyState == 4 && request.status == 200) {
             let response = await JSON.parse(request.response)
             console.log(response)
             furniture(response)
         }
+    } catch (err) {
+        console.log(err)
     }
-    catch(err) {
-        console.log(err);
-    }
-    
-       
-    
-   
 }
 
 request.open('GET', 'http://localhost:3000/api/furniture', true)
