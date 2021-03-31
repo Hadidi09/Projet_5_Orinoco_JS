@@ -113,11 +113,20 @@ const furniture = (woodenFurniture) => {
 
 // Fonction qui envoie la requête Get ID au serveur pour récupérer uniquement le meuble choisi grâce à son ID
 request.onreadystatechange = async () => {
-    if (request.readyState == 4 && request.status == 200) {
-        let response = await JSON.parse(request.response)
-        // console.log(response)
-        furniture(response)
+    try
+    {
+         if (request.readyState == 4 && request.status == 200)
+        {
+            let response = await JSON.parse(request.response)
+            console.log(response)
+            furniture(response)
+        }
     }
+    catch(err) {
+        console.log('error' + " " + err);
+        
+    }
+    
 }
 
 request.open('GET', 'http://localhost:3000/api/furniture/' + id, true)

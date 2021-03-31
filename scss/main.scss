@@ -71,6 +71,9 @@
     select {
         grid-row: 4;
     }
+    .btn-primary {
+        font-family: 'Roboto', sans-serif;
+    }
 }
 
 footer {
@@ -95,7 +98,8 @@ form {
     align-items: center;
     flex-direction: column;
     ::placeholder,
-    button {
+    button,
+    label {
         font-family: 'Roboto', sans-serif;
     }
 }
@@ -112,18 +116,29 @@ form {
     align-items: center;
 }
 #total {
-    border: 2px solid brown;
-    background-color: burlywood;
+    border: 2px solid;
+    background-color: #269ac2;
+    color: #fff;
+    border-style: inset;
     font-size: 24px;
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 3%;
+    font-family: 'roboto', sans serif;
+    &:hover {
+        background-color: #fff;
+        color: #269ac2;
+        cursor: pointer;
+    }
 }
 
 article {
     display: flex;
     flex-direction: column;
     align-items: center;
+    h2 {
+        font-family: 'Roboto', sans-serif;
+    }
     .order {
         border: 2px solid;
         border-radius: 15px;
@@ -161,7 +176,4 @@ article {
     th {
         font-family: 'Roboto', sans-serif;
     }
-}
-td.tosetup span {
-    margin: 2%;
 }
