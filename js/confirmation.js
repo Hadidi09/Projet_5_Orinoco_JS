@@ -12,10 +12,8 @@ let email = document.querySelector('.email')
 
 paraOrder.textContent = `Votre code de commande est: ${orderId}`
 firstName.textContent = `Merci ${formContact.firstName} ${formContact.lastName}`
-totalcommande.textContent = `Votre commande totale s'élève à:${total}`
+totalcommande.textContent = `Votre commande totale s'élève à:${total}€`
 address.textContent = `Vous recevrez votre commande à l'adresse: ${formContact.address} ${formContact.city}`
 email.textContent = `Retrouvez les details de votre commande dans votre boite email: ${formContact.email}`
 
 localStorage.clear()
-
-

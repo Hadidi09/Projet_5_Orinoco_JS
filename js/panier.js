@@ -6,7 +6,6 @@ let total = 0
 //Fonction de mise en page du panier
 const basket = () => {
     furnitureStorage.forEach((furnitureChart) => {
-        
         const tr = document.createElement('tr')
         const tdimg = document.createElement('img')
 
@@ -15,7 +14,7 @@ const basket = () => {
         const td2 = document.createElement('td')
         td2.textContent = `${furnitureChart.choiceToAddVarnish}`
         const td3 = document.createElement('td')
-        td3.setAttribute("class", "tosetup")
+        td3.setAttribute('class', 'tosetup')
         const btnAdd = document.createElement('button')
         const span = document.createElement('span')
         const btnMinus = document.createElement('button')
@@ -43,7 +42,7 @@ const basket = () => {
         const td4 = document.createElement('td')
         td4.textContent = `${furnitureChart.quantité}`
         const td5 = document.createElement('td')
-        td5.setAttribute = ("class", "removeup")
+        td5.setAttribute = ('class', 'removeup')
         td5.textContent = `${
             (furnitureChart.price / 100) * furnitureChart.quantité
         } `
@@ -61,12 +60,9 @@ const basket = () => {
         tBody.appendChild(tr)
 
         //Calcul du Total de la somme total
-        total = total + (furnitureChart.price / 100 * furnitureChart.quantité)
+        total = total + (furnitureChart.price / 100) * furnitureChart.quantité
         let divTotal = document.querySelector('#total')
-        divTotal.textContent = `Total: ${total}`
-        
-        
-
+        divTotal.textContent = `Total: ${total}€`
 
         // Plus de quantité
         let addOneQuantity = document.querySelectorAll('.btn-success')
@@ -104,7 +100,10 @@ const basket = () => {
 //Fonction d'incrémentation de la quantité
 const add_OneQty = (prods) => {
     furnitureStorage.forEach((list) => {
-        if (list.id == prods.id && list.choiceToAddVarnish == prods.choiceToAddVarnish) {
+        if (
+            list.id == prods.id &&
+            list.choiceToAddVarnish == prods.choiceToAddVarnish
+        ) {
             list.quantité++
         }
         localStorage.setItem('panier', JSON.stringify(furnitureStorage))
@@ -113,7 +112,10 @@ const add_OneQty = (prods) => {
 //Fonction de décrementation de la quantité
 const minus_OneQty = (prods) => {
     furnitureStorage.forEach((list) => {
-        if (list.id == prods.id && list.choiceToAddVarnish == prods.choiceToAddVarnish) {
+        if (
+            list.id == prods.id &&
+            list.choiceToAddVarnish == prods.choiceToAddVarnish
+        ) {
             list.quantité--
         }
         localStorage.setItem('panier', JSON.stringify(furnitureStorage))
@@ -142,8 +144,7 @@ const sendingTheData = (furnitureData) => {
             localStorage.setItem('order', JSON.stringify(furnits.orderId))
             localStorage.setItem('contact', JSON.stringify(furnits.contact))
             localStorage.setItem('total', JSON.stringify(total))
-            window.location.assign("confirmation.html")
-            
+            window.location.assign('confirmation.html')
         }
     }
 
@@ -161,7 +162,7 @@ const submit_Form_Data = () => {
         lastName: document.getElementById('lastName').value,
         address: document.getElementById('adresse').value,
         city: document.getElementById('city').value,
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
     }
     // Pousser les id qui se trouve dans le localstorage, dans le tableau "products"
     let products = []
@@ -187,9 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
     form_Data.addEventListener('submit', (e) => {
         e.preventDefault()
         submit_Form_Data()
-       
     })
 })
-
-//let log = submit_Form_Data()
-//console.log(submit_Form_Data());

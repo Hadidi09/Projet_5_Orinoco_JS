@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400&display=swap');
 @import '../scss/mixins.scss';
 
 * {
@@ -21,6 +21,9 @@
 
 .title {
     text-align: center;
+    p {
+        font-family: 'Roboto', sans-serif;
+    }
 }
 
 .card-text-center {
@@ -29,10 +32,15 @@
     border-radius: 15px;
     margin-bottom: 2%;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.14);
+    border-style: hidden;
     .card-img-top {
         width: 100%;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
+    }
+    .description {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
     }
 }
 
@@ -50,17 +58,35 @@
         border-radius: 15px;
         padding: 2%;
         margin-bottom: 1%;
+        border-style: dotted;
+        cursor: pointer;
+        background: #269ac2;
+        color: #fff;
+    }
+    span:hover {
+        background: #fff;
+        color: #269ac2;
+        transform: scale(1.05);
     }
     select {
         grid-row: 4;
     }
 }
 
-footer .container-fluid .row .col-sm-12 {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+footer {
+    .col-sm-12 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    p {
+        font-family: 'Roboto', sans-serif;
+    }
+}
+i:hover {
+    color: violet;
+    cursor: pointer;
 }
 
 form {
@@ -68,6 +94,10 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    ::placeholder,
+    button {
+        font-family: 'Roboto', sans-serif;
+    }
 }
 
 .form-inline {
@@ -102,17 +132,13 @@ article {
         border-style: hidden;
     }
     p {
-        /* background-color: antiquewhite;
-        border: 2px solid;
-        border-radius: 15px;
-        padding: 1%; */
         border-radius: 15px;
         background: #269ac2;
         box-shadow: 0 12.5px 10px rgba(0, 0, 0, 0.135),
             0 100px 80px rgba(0, 0, 0, 0.27);
         color: #fff;
         padding: 1%;
-
+        font-family: 'Montserrat', sans-serif;
         font-size: 20px;
         font-weight: bold;
     }
@@ -131,6 +157,11 @@ article {
     display: flex;
 }
 
+.table {
+    th {
+        font-family: 'Roboto', sans-serif;
+    }
+}
 td.tosetup span {
     margin: 2%;
 }

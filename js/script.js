@@ -14,9 +14,9 @@ const furniture = (woodenFurniture) => {
         let cardtext = document.createElement('div')
         let image = document.createElement('img')
         let cardbody = document.createElement('div')
-        let h3 = document.createElement('h3')
+        let h3 = document.createElement('h2')
         let para = document.createElement('p')
-        let price = document.createElement('p')
+        let price = document.createElement('span')
         let link = document.createElement('a')
 
         col.setAttribute('class', 'col-xs-12 col-sm-12 col-md-6')
@@ -27,11 +27,11 @@ const furniture = (woodenFurniture) => {
         cardbody.setAttribute('class', 'card-body')
         h3.textContent = chattel.name
         para.textContent = chattel.description
-        price.textContent = chattel.price
+        para.setAttribute('class', 'description')
+        price.textContent = (chattel.price / 100).toFixed()
         link.setAttribute('class', 'btn btn-primary')
         link.textContent = 'Acheter'
         link.setAttribute('href', 'produit.html?id=' + chattel._id)
-       
 
         productsRow.appendChild(col)
         col.appendChild(cardtext)
@@ -42,13 +42,11 @@ const furniture = (woodenFurniture) => {
         cardbody.appendChild(price)
         cardbody.appendChild(link)
 
-        
         link.addEventListener('click', function () {
             location.href = './produit.html?id=' + id
         })
     })
 }
-
 
 // Fonction qui envoie la requête Get au serveur pour récupérer les meubles mis en vente
 request.onreadystatechange = async () => {
@@ -61,4 +59,3 @@ request.onreadystatechange = async () => {
 
 request.open('GET', 'http://localhost:3000/api/furniture', true)
 request.send()
-

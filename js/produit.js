@@ -8,14 +8,13 @@ let products = document.querySelector('.row')
 let request = new XMLHttpRequest()
 let furnitureProducts = []
 
-
 //
 const furniture = (woodenFurniture) => {
     let col = document.createElement('div')
     let cardtext = document.createElement('div')
     let image = document.createElement('img')
     let cardbody = document.createElement('div')
-    let h3 = document.createElement('h3')
+    let h3 = document.createElement('h2')
     let para = document.createElement('p')
     let price = document.createElement('span')
     let link = document.createElement('a')
@@ -28,6 +27,7 @@ const furniture = (woodenFurniture) => {
     cardbody.setAttribute('class', 'card-body')
     h3.textContent = woodenFurniture.name
     para.textContent = woodenFurniture.description
+    para.setAttribute('class', 'description')
     price.textContent = woodenFurniture.price / 100
     link.setAttribute('class', 'btn btn-primary ajout')
     link.textContent = 'Acheter'
@@ -49,9 +49,9 @@ const furniture = (woodenFurniture) => {
         selection.appendChild(option)
         cardbody.appendChild(selection)
     })
-   
+
     let addToShoppingCart = document.querySelectorAll('.ajout')
-    
+
     // écouter l'événement au click, pour stocker les produits dans le localStorage
     addToShoppingCart.forEach((addFurniture) => {
         addFurniture.addEventListener('click', (e) => {
@@ -67,13 +67,18 @@ const furniture = (woodenFurniture) => {
             }
             //Gérer le choix de varnish unique
             let select = document.querySelector('select')
-            featureFurniture.choiceToAddVarnish = select.options[select.selectedIndex].value
+            featureFurniture.choiceToAddVarnish =
+                select.options[select.selectedIndex].value
 
             // Si le localStorage est strictement égal à null . Pousse l'objet meuble dans le tableau produit
             if (localStorage.getItem('panier') === null) {
                 furnitureProducts.push(featureFurniture)
-                localStorage.setItem('panier', JSON.stringify(furnitureProducts))
+                localStorage.setItem(
+                    'panier',
+                    JSON.stringify(furnitureProducts)
+                )
             }
+
             // Sinon récupère la clé 'panier'
             else if (localStorage.getItem('panier')) {
                 // le parser avec la méthode JSON.parse()
@@ -84,7 +89,8 @@ const furniture = (woodenFurniture) => {
                     let choiceToAdd = panier.find(
                         (addChoice) =>
                             addChoice._id === featureFurniture._id &&
-                            addChoice.choiceToAddVarnish === featureFurniture.choiceToAddVarnish
+                            addChoice.choiceToAddVarnish ===
+                                featureFurniture.choiceToAddVarnish
                     )
                     if (furnitureInStore._id === featureFurniture._id) {
                         if (choiceToAdd) {
@@ -107,9 +113,9 @@ const furniture = (woodenFurniture) => {
 
 // Fonction qui envoie la requête Get ID au serveur pour récupérer uniquement le meuble choisi grâce à son ID
 request.onreadystatechange = async () => {
-     if (request.readyState == 4 && request.status == 200){
+    if (request.readyState == 4 && request.status == 200) {
         let response = await JSON.parse(request.response)
-       // console.log(response)
+        // console.log(response)
         furniture(response)
     }
 }
