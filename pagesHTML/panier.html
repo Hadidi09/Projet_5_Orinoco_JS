@@ -94,7 +94,6 @@
                                 id="firstName"
                                 aria-describedby="FirstName"
                                 placeholder="Entrer votre Prénom"
-                                pattern="^[a-zA-Z]{2,25}$"
                                 title="Entrez des lettres alphabétiques(minuscules et/ou majuscules)Min: 2 lettres /max : 25 lettres"
                                 required
                             />
@@ -107,7 +106,6 @@
                                 id="lastName"
                                 aria-describedby="lastName"
                                 placeholder="Entrer votre Nom"
-                                pattern="^[a-zA-Z]{2,25}$"
                                 title="Entrez des lettres alphabétiques(minuscules et/ou majuscules)Min: 2 lettres /max : 25 lettres"
                                 required
                             />
@@ -120,8 +118,7 @@
                                 id="adresse"
                                 aria-describedby="votre adresse"
                                 placeholder="Entrer votre adresse"
-                                pattern="^[0-9]{1,3}\s[a-z\s]{3,25}$"
-                                title="Entrez des chiffres entre (0 et 9)Min : 1 /max : 3, suivi d'une espace ensuite des lettres alphabétiques(minuscules)Min : 4 lettres/max : 60 lettres en utilisant des espaces"
+                                title="Entrez des chiffres entre (0 et 9)Min : 1 /max : 3, suivi d'une espace ensuite des lettres alphabétiques(minuscules)Min : 3 lettres/max : 40 lettres en utilisant des espaces"
                                 required
                             />
                         </div>
@@ -133,7 +130,6 @@
                                 id="city"
                                 aria-describedby="votre ville"
                                 placeholder="Ville"
-                                pattern="^[a-z\s]{3,25}$"
                                 title="Entrez des lettres alphabétiques(minuscules)Min: 3 lettres /max : 25 lettres"
                                 required
                             />
@@ -146,7 +142,6 @@
                                 id="email"
                                 aria-describedby="Votre Email"
                                 placeholder="Entrer votre email"
-                                pattern="^[a-z0-9_-]+@[a-z]+\.[a-z]{2,3}$"
                                 title="Utilisez des lettres alphabétiques(minuscules/majuscules) des chiffres entre(0 et 9) ou des underscores
                                 Min: 8 caractères/max : 20 caractères, suivi d'un (@) de lettres (minuscules), d'un (.) enfin de lettres (minuscules)
                                 Min: 2/max : 3"
@@ -209,7 +204,7 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"
         ></script>
-
+        <script src="../js/formValidation.js"></script>
         <script src="../js/panier.js"></script>
     </body>
 </html>
