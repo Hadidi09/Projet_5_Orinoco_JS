@@ -102,6 +102,12 @@ form {
     label {
         font-family: 'Roboto', sans-serif;
     }
+    input:invalid {
+        border-color: #ff0000;
+    }
+    input:valid {
+        border-color: #04dd18;
+    }
 }
 
 .form-inline {
