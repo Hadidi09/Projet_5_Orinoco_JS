@@ -31,7 +31,7 @@ const furniture = (woodenFurniture) => {
     price.textContent = woodenFurniture.price / 100
     link.setAttribute('class', 'btn btn-primary ajout')
     link.textContent = 'Acheter'
-    link.setAttribute('href', '../frontend/pagesHTML/produit.html?id=' + id)
+    link.setAttribute('href', '../frontend/produit.html?id=' + id)
 
     products.appendChild(col)
     col.appendChild(cardtext)

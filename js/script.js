@@ -43,7 +43,7 @@ const furniture = (woodenFurniture) => {
         cardbody.appendChild(link)
 
         link.addEventListener('click', function () {
-            location.href = './produit.html?id=' + id
+            location.href = 'produit.html?id=' + id
         })
     })
 }
