@@ -124,5 +124,5 @@ request.onreadystatechange = async () => {
     }
 }
 
-request.open('GET', 'http://localhost:3000/api/furniture/' + id, true)
+request.open('GET', 'https://oc-devweb-p5-api.herokuapp.com' + id, true)
 request.send()

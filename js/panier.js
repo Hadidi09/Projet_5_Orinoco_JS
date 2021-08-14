@@ -152,7 +152,7 @@ const sendingTheData = (furnitureData) => {
         }
     }
 
-    requete.open('POST', 'http://localhost:3000/api/furniture/order', true)
+    requete.open('POST', 'https://oc-devweb-p5-api.herokuapp.com/order', true)
     requete.setRequestHeader('content-type', 'application/json')
 
     requete.send(furnitureData)
